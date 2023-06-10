@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: scylla-db
+  labels:
+    app: scylla-db
+spec:
+  selector:
+    matchLabels:
+      app: scylla-db
+  template:
+    metadata:
+      labels:
+        app: scylla-db
+    spec:
+      containers:
+      - name: scylla-db
+        image: scylladb/scylla:4.6.1
+        ports:
+        - containerPort: 9042
+          name: cql
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/scylla
+      volumes:
+      - name: config-volume
+        configMap:
+          name: scylla-config
+          items:
+            - key: scylla.yaml
+              path: scylla.yaml

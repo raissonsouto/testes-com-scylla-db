@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scylla-config
+data:
+  scylla.yaml: |
+    cluster_name: my_scylla_cluster
+    listen_address: <listen_address>
+    rpc_address: <rpc_address>
+    seed_provider:
+      - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+        parameters:
+          - seeds: "<comma-separated-seed-addresses>"
+
+    data_file_directories:
+      - /var/lib/scylla/data
+
+    commitlog_directory: /var/lib/scylla/commitlog
+
+    endpoint_snitch: GossipingPropertyFileSnitch
+
+    num_tokens: 256
+
+    keyspace:
+      - name: my_keyspace
+        replica_placement_strategy: org.apache.cassandra.locator.SimpleStrategy
+        replication_factor: 3
+        tables:
+          - name: users
+            columns:
+              - name: id
+                type: uuid
+                primary: true
+              - name: name
+                type: text
+              - name: age
+                type: int
+            persistency:
+              - block_size_kb: 64
+                sstable_compression: org.apache.cassandra.io.compress.LZ4Compressor
+                compression_parameters:
+                  chunk_length_kb: 64
+        default_consistency_level: QUORUM
