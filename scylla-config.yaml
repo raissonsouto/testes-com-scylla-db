@@ -4,27 +4,27 @@ metadata:
   name: scylla-config
 data:
   scylla.yaml: |
-    cluster_name: my_scylla_cluster
-    listen_address: <listen_address>
-    rpc_address: <rpc_address>
+    cluster_name: sd-testes
+    listen_address: $(HOST_IP)
+    rpc_address: $(HOST_IP) 
     seed_provider:
       - class_name: org.apache.cassandra.locator.SimpleSeedProvider
         parameters:
-          - seeds: "<comma-separated-seed-addresses>"
+          - seeds: 10.11.19.52
 
     data_file_directories:
       - /var/lib/scylla/data
 
     commitlog_directory: /var/lib/scylla/commitlog
 
-    endpoint_snitch: GossipingPropertyFileSnitch
+    endpoint_snitch: SimpleSnitch
 
     num_tokens: 256
 
     keyspace:
       - name: my_keyspace
         replica_placement_strategy: org.apache.cassandra.locator.SimpleStrategy
-        replication_factor: 3
+        replication_factor: 2
         tables:
           - name: users
             columns:
@@ -40,4 +40,4 @@ data:
                 sstable_compression: org.apache.cassandra.io.compress.LZ4Compressor
                 compression_parameters:
                   chunk_length_kb: 64
-        default_consistency_level: QUORUM
+        default_consistency_level: TWO

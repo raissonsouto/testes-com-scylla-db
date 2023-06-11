@@ -16,6 +16,11 @@ spec:
       containers:
       - name: scylla-db
         image: scylladb/scylla:4.6.1
+        env:
+          - name: HOST_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
         ports:
         - containerPort: 9042
           name: cql
