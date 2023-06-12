@@ -14,7 +14,7 @@ spec:
         app: scylla-db
     spec:
       nodeSelector:
-        role: worker
+        node-role.kubernetes.io/worker: scylla
       containers:
       - name: scylla-db
         image: scylladb/scylla:4.6.1
