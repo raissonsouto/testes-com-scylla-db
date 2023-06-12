@@ -33,7 +33,7 @@ spec:
         app: grafana
     spec:
       nodeSelector:
-        node-role.kubernetes.io/master:
+        node-role.kubernetes.io/master: ""
       containers:
         - name: grafana
           image: grafana/grafana:8.2.0
