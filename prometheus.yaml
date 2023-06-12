@@ -32,6 +32,8 @@ spec:
       labels:
         app: prometheus
     spec:
+      nodeSelector:
+        role: master
       containers:
         - name: prometheus
           image: prom/prometheus:v2.30.0

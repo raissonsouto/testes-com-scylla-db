@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Node
-metadata:
-  name: edge-gallery-deployadmin
-spec:
-  taints:
-    - key: node-role/main
-      effect: NoSchedule

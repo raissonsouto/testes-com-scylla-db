@@ -13,6 +13,8 @@ spec:
       labels:
         app: scylla-db
     spec:
+      nodeSelector:
+        role: <none>
       containers:
       - name: scylla-db
         image: scylladb/scylla:4.6.1
