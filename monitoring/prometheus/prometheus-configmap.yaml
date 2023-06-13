@@ -16,7 +16,7 @@ data:
       - job_name: 'scylla'
         scrape_interval: 5s
         static_configs:
-          - targets: ['192.168.229.6:9100', '192.168.22.68:9100']
+          - targets: ['192.168.229.6:9180', '192.168.22.68:9180']
       - job_name: 'kubernetes-nodes'
         scheme: https
         tls_config:
