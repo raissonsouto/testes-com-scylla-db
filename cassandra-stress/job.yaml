@@ -13,7 +13,7 @@ spec:
         command:
           - "/bin/bash"
           - "-c"
-          - 'cassandra-stress write n=100000 -node 192.168.229.6'
+          - 'cassandra-stress write n=100000 -node 192.168.229.6','192.168.22.68'
         resources:
           limits:
             cpu: "4"
