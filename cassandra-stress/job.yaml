@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cassandra-stress
+  labels:
+    app: cassandra-stress
+spec:
+  template:
+    spec:
+      containers:
+      - name: cassandra-stress
+        image: scylladb/scylla:latest
+        command:
+          - "/bin/bash"
+          - "-c"
+          - 'cassandra-stress write n=100000 -node 192.168.229.6'
+        resources:
+          limits:
+            cpu: "4"
+            memory: "8Gi"
+      restartPolicy: Never
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
