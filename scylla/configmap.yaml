@@ -20,7 +20,7 @@ data:
     endpoint_snitch: SimpleSnitch
 
     num_tokens: 256
-
+    prometheus_port: 9180
     keyspace:
       - name: my_keyspace
         replica_placement_strategy: org.apache.cassandra.locator.SimpleStrategy
