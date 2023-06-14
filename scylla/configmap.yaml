@@ -9,8 +9,6 @@ data:
     rpc_address: $(HOST_IP) 
     seed_provider:
       - class_name: org.apache.cassandra.locator.SimpleSeedProvider
-        parameters:
-          - seeds: 10.11.19.52
 
     data_file_directories:
       - /var/lib/scylla/data
@@ -24,7 +22,7 @@ data:
     prometheus_address: 0.0.0.0
 
     keyspace:
-      - name: my_keyspace
+      - name: sd-testes
         replica_placement_strategy: org.apache.cassandra.locator.SimpleStrategy
         replication_factor: 2
         tables:

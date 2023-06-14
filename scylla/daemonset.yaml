@@ -18,12 +18,19 @@ spec:
       containers:
       - name: scylla-db
         image: scylladb/scylla:5.0.1
+        args: ["--seeds", "$(SEED_IP)"]
         env:
           - name: HOST_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
         ports:
+        - containerPort: 7000
+          name: intra-node
+
+        - containerPort: 7199
+          name: jmx
+            
         - containerPort: 9042
           name: cql
 
@@ -32,6 +39,9 @@ spec:
 
         - containerPort: 9180
           name: prometheus
+
+        - containerPort: 10000
+          name: api-server
           
         volumeMounts:
         - name: config-volume
