@@ -18,7 +18,7 @@ spec:
       containers:
       - name: scylla-db
         image: scylladb/scylla:5.0.1
-        args: ["--seeds", "$(SEED_IP)"]
+        args: ["--seeds", "$SEED_IP"]
         env:
           - name: HOST_IP
             valueFrom:
