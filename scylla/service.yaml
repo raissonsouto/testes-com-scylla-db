@@ -11,3 +11,67 @@ spec:
     - protocol: TCP
       port: 9180
       targetPort: 9180
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylla-node-exporter
+  labels:
+    app: scylla-db
+spec:
+  selector:
+    app: scylla-db
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylla-api-server
+  labels:
+    app: scylla-db
+spec:
+  selector:
+    app: scylla-db
+  ports:
+    - protocol: TCP
+      port: 10000
+      targetPort: 10000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylla-cql
+  labels:
+    app: scylla-db
+spec:
+  selector:
+    app: scylla-db
+  ports:
+    - protocol: TCP
+      port: 9042
+      targetPort: 9042
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylla-jmx
+  labels:
+    app: scylla-db
+spec:
+  selector:
+    app: scylla-db
+  ports:
+    - protocol: TCP
+      port: 7199
+      targetPort: 7199
